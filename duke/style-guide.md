@@ -143,6 +143,8 @@ The mechanism was never distance. It was always **whether the two things fall in
 
 This sharpens §16 from a genre observation into a mechanism. The module-opening paragraph is not dangerous because nobody reads it. It is dangerous because **nobody edits it.** It is a slot that receives text once, at composition, and is thereafter structurally excluded from every subsequent operation on the file.
 
+*Refinement (field observation, pn-chomper ghost-turn drift, reawakened builder session): "nobody edits it" is itself a proxy for something more exact. A drifted sentence in `engine.lob` was present in context during at least two full-file reads and survived both — the tokens were retrieved, not skipped. What was absent was not reading and not editing but a **check**: both passes were structural tasks ("where does this function live") that never posed the sentence as a semantic question ("is this still true of the code"). The model answered the question it was holding, correctly, and the adjacent claim rode along unexamined. So the true variable is not whether the slot gets edited — it is whether **any pass treats "does this sentence match this code" as a question to answer, independent of what the pass was for.** Editing catches drift only when it happens to pose that question. Proximity creates the opportunity for the check; it does not create the check.*
+
 ### 4a. Reference is proximity in a better space
 
 The sharpest objection to the above is that **reference is itself a form of proximity** — distance-1, merely in a different space. This is correct, and it improves the argument rather than damaging it. The question is not proximity versus reference. It is why adjacency in the *graph* is trustworthy when adjacency in the *text* is not. Three reasons, and all three are needed:
@@ -327,6 +329,39 @@ The eight-versus-five would have been visible on the page.
 
 ---
 
+## Part VI — Where every check belongs, before you build it
+
+*This part is a synthesis, not a fossil. The rest of the guide is generalised from failures caught in specific projects; this is generalised from the rest of the guide. It is the pattern the individual rules keep tracing — reference-versus-adjacency, names-versus-numbers, claim-versus-prose are all one cut seen from different angles — and naming the cut is a leap slightly ahead of the evidence. Trust it as architecture worth testing, not as law with a corpse behind it.*
+
+There are two kinds of wrong a `.lob` file can be, and they are not the same organ.
+
+**Consistency** is the artefact against itself. Does this return type match that assertion; does this reference resolve; does this count match that array; does the prose contradict the prose eleven lines down. Consistency is *decidable from the artefact alone*. You never have to leave the file to check it.
+
+**Correspondence** is the artefact against the world. Is `Alcyone` the name of that star; is `Mytilene` the name of that town; is `f² + fd = 4` the actual stability bound; are these the *right* five axes. Correspondence *cannot be decided from the artefact*, ever, because the fact it answers to lives outside the file. `PLEIADES_ALCOYNE` is perfectly consistent — it resolves, it collides with nothing, the build is green — and wrong about the sky. No amount of internal checking reaches it, because the sky is not in the graph.
+
+From which the whole architecture falls out:
+
+> **Consistency belongs in the tool. Correspondence belongs in the readers.**
+
+The tool — `notlob check`, the runner, the graph — is a *pure, total, memoryless function over the artefact*. Same input, same output, no history, no mood, no first-time-green nudge. That referential transparency is the entire source of its trustworthiness: a checker whose output depends on when you ran it is a nag, and a nag is a thing you learn to mute. Consistency is exactly the class of wrong a pure function can catch, because it is decidable from the input. Keep the tool pure and it can carry the whole consistency load without ever lying.
+
+Correspondence cannot live in that function, because the world is not one of its inputs. It lives in *readers*, of which there are two kinds, and they are different faculties, not the same faculty at two frequencies:
+
+- **The in-session builder**, checking recent coherence. This is the builder auditing the builder's own last ten minutes — and it works, for consistency, because both facts are inside the theory the builder is actively holding. It caught the type signature. It would have caught the fixture pointer. It will *never* catch `Alcoyne`, because the builder's theory is what produced `Alcoyne`; a session cannot audit the confident priors it is built on. Self-review catches what you got uncertain about, never what you were certain and wrong about.
+- **The out-of-session critic**, checking the world. This works *because* it never entered the operational cycle — it carries a different theory of the system, uncontaminated by the thousand small commitments the build required, and the value is precisely the *difference* between the two theories. Put it in the loop and it acquires the builder's commitments and collapses into the builder's blind spots. Its power is a structural property — a fresh context, cold to the file — not a diligence property you can hope your way into. This is the layer that caught the misnamed star.
+
+And the diagnostic, which is the useful part, because it tells you where a proposed check goes *before* you build it and spares you a carbuncle:
+
+> **A component feels like a carbuncle exactly when it is a correspondence tool bolted into the consistency engine, or a stateful nudge bolted into a stateless function.**
+
+A spell-checker wired into `notlob check` is a carbuncle — not because spell-checking is bad, but because a dictionary is a *correspondence* tool and `check` is a *consistency* engine, and the queasy sense of a part that doesn't share the organ's blood supply is the category error announcing itself. The dictionary is not overengineered. It is *misplaced*. Hand the same dictionary to the cold-read critic and it stops being a carbuncle and becomes an aid, because a reviewer checking words against the world is a reviewer doing its actual job. Same code, carbuncle in one location and organ in another, and the only difference is whether it lives in the layer whose work it already is.
+
+Likewise the "nudge on first green." It felt ghastly wired into `notlob test` — correctly, because it makes a pure function stateful. But the nudge is not notlob's at all. It belongs to the *harness that drives* notlob: the coding agent, which is supposed to be stateful, which already holds the whole session. Cadence — when to check, whether this is the first green, whether to prompt a correspondence pass — is the agent's concern. The check itself stays pure. You are not abandoning statelessness; you are putting the stateful thing in the stateful layer and the stateless thing in the stateless layer, which is only correct factoring. The carbuncle feeling was the true signal that it was bolted to the wrong component.
+
+**The rule for building the next check, then:** ask whether it decides consistency or correspondence. If consistency, it may live in the tool, and must be pure. If correspondence, it lives with a reader — the in-session builder if recent-coherence is enough, the out-of-session critic if it needs the world — and must never contaminate the tool's exit code, on pain of rebuilding the green-check laundering one level up. Do not remove a check that feels wrong. Move it to the layer whose job it already is.
+
+---
+
 ## Appendix — The rules, without the arguments
 
 1. No temporal deixis. The file has no now.
@@ -350,7 +385,10 @@ The eight-versus-five would have been visible on the page.
 19. **Prose survives if and only if it is edited in the same operation as the code it describes.** Prefer to put durable claims where the edits land — a test-group label outlives an essay paragraph.
 20. Name a test group after the *design insight*, not the mechanical precondition. `##join room only reachable via coordinated two-token play` is better literate programming than most essays, and by §19 it is the only prose in the file that will still be true next year.
 21. A passing claim says nothing about whether the thing it tests is *reachable*. Notlob errors on unused imports and is silent on unreachable exports.
+22. **Consistency belongs in the tool; correspondence belongs in the readers.** The artefact-against-itself is decidable and goes in a pure, stateless check. The artefact-against-the-world is not, and goes in a reader — the in-session builder for recent coherence, the out-of-session critic for the world.
+23. A check feels like a carbuncle exactly when it is a correspondence tool in the consistency engine, or a stateful nudge in a stateless function. The fix is never to remove it — it is to move it to the layer whose job it already is. (A dictionary belongs with the critic, not with `check`. A first-green nudge belongs with the agent, not with `test`.)
+24. Self-review catches what you got uncertain about, never what you were certain and wrong about. The confident error is caught only by a reader who did not make it.
 
 ---
 
-*Written after reading every example in the repository and running all of them that would run. Corrections welcome and expected. The rules with corpses behind them are §1, §4, §6, and §10; the rest are argued from first principles and should be trusted proportionally less.*
+*Written after reading every example in the repository and running all of them that would run. Corrections welcome and expected. The rules with corpses behind them are §1, §4, §6, and §10. §22–24 (Part VI) are a synthesis of the rest — architecture worth testing, not law with a corpse behind it. Everything else is argued from first principles and should be trusted proportionally less.*

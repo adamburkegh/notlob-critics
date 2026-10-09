@@ -65,6 +65,596 @@ this is the record, not the judgement.*
 
 ---
 
+## Reception
+
+*Factual record of the paper's external reception, and what it reveals.
+Kept separate from critical judgement; this is data about how the work is
+read once it leaves the author's hands.*
+
+### The paper is posted
+
+The paper — *A Literate Programming Environment for Human and Machine
+Agents*, Adam T. Burke — was posted to arXiv (2608.24644), published
+2026-08-26, CC BY 4.0. Non-experimental design-and-rationale paper; a
+stepping stone toward a conference version, target venue leaning toward
+Onward!/SPLASH or an AIware-style workshop rather than an ICSE/FSE
+technical track that would demand the deferred evaluation.
+
+### First automated summary — gist.science
+
+An AI summarisation platform (gist.science) ingested the paper
+automatically and produced a plain-language explanation plus a technical
+summary, disclaimed as machine-generated and "not written or endorsed by
+the authors." First known third-party reception of the work. Useful as a
+mirror: it shows what survives a fast, unframed reading.
+
+**What survived intact (the framing is doing its job):**
+- The core thesis: co-location of prose, code, and checks; the name-graph
+  as a non-linear structure enabling concept-adjacency; the context-window
+  motivation; the Naur theory-building spine.
+- The SDD contrast, stated correctly as notlob's positioning
+  (specifications-in-a-pipeline versus co-located-at-a-workbench). The
+  sharpening of that contrast paid off — a fast reader got it right.
+- The deflation-proofing: the summary independently registered that the
+  paper "modestly claims a design and toolset" and defers evaluation. The
+  hedging calibrated the reader correctly rather than inviting a
+  "where's the study" reaction.
+- The §4.3 declarative-neglect observation, foregrounded as its own
+  section — vindicating the decision to keep it and give it a real heading.
+
+**Where it drifted (and what each drift tells us):**
+- *"Spontaneously."* The summary read the Fox DSP episode as an agent that
+  "spontaneously" added a property test. That is precisely the misreading
+  the corrected patches-dsp account guards against: the *workflow*
+  generated the property; the agent produced it under the format's demand;
+  it caught the bug. If an automated reader lands on "spontaneously,"
+  human reviewers may too — signal that the paper's wording around agency
+  in that episode could be one degree more precise.
+- *Scrambled case studies.* The summary crossed wires between pleiades and
+  patches-dsp — attributing pleiades' type-inconsistency detection and the
+  DSP port's generated property to the wrong projects. Corroborates the
+  editorial instinct that patches-dsp, as an incomplete fragment featured
+  at equal weight, invites garbling; better demoted to a one-line
+  attributed finding than exhibited as a full case study.
+- *"Pedantic."* The summary independently characterised the critic agents'
+  feedback as sometimes "pedantic" — an unflattering word arrived at
+  without prompting. If the paper's own framing invited it, the emphasis
+  on the critic material may still be a touch off, even after softening.
+  The valuable finding (critics caught real prose–code drift) is what
+  should dominate; "pedantic" as a reader's takeaway means it doesn't yet.
+- *Bindings.* The summary lists three bindings (Haskell, Python,
+  TypeScript) — correct for mainline; Fox's Rust binding is absent, as it
+  should be, since it is on a fork. Noting the public record now says
+  three, a version boundary to be able to point at if Rust lands in
+  mainline later.
+
+**The observation worth keeping.** An AI system automatically ingested a
+paper about human–machine collaboration and produced a theory of it that
+mostly holds but drifts at the edges — exactly where a reader without the
+original's context extends it aberrantly ("spontaneously," the scrambled
+studies). The paper's own Naur/Fox argument predicts the failure mode of
+its own automated summary: the summary is a trace that carries most of the
+theory and loses it precisely at the under-specified joints. The thesis
+operating one level up, on the paper itself. Not useful for the paper;
+a genuine instance of the argument in the wild, and the kind of thing this
+notebook exists to catch.
+
+### Bookmark: a separate paper, and the drift caught late
+
+*Recorded briefly while fresh; deliberately not elaborated, as the
+submission has not happened.*
+
+The author reports that a separate paper, written over the same period with
+extensive LLM-agent assistance, hit a late bug: code violated a lemma,
+surfaced by a property test right at the end — the theory-code gap biting at
+the point of maximum entrenchment, exactly the failure notlob's central
+conceit predicts. The codebase also carries several notlob-shaped problems,
+some attributed to multiple agents working on it. An in-the-wild instance of
+the thesis, on the author's own work, alongside the Fox bug and pleiades'
+scaffold-first practice.
+
+Crucially, the author did **not** see this as a notlob project, and for a
+principled reason worth recording: the paper needs native artifacts — LaTeX,
+Python across multiple libraries — and asking reviewers, readers, and a
+publication platform to deal with an obscure experimental language would have
+been the wrong trade. Publication platforms are not to be argued with. This
+is the plain-text-completeness / native-output tension stated from the
+consumer side: notlob's value to the author (theory held in checkable nodes)
+runs against notlob's cost to everyone downstream (an unfamiliar format
+between them and the work). The revisiting is happening only late, once
+working patterns have emerged — not as a plan to rebuild.
+
+Held as an open design question (could formal, publication-bound work ever
+be a notlob project without breaking plain-text completeness or imposing the
+format on unwilling consumers?), not a to-do. Left here at bookmark depth on
+purpose.
+
+### Second automated summary — ResearchPod (audio)
+
+A second AI platform (ResearchPod, Berlin) generated a ~4-minute podcast
+episode from the paper (author-initiated), a cheesy two-presenter dialogue
+in an American infomercial register. It gets the gist, namechecks Knuth and
+Naur, and — notably — **centres the name-graph over co-location**, inverting
+the paper's own emphasis (the paper leads with co-location and treats the
+name-graph as the mechanism that enables it; the podcast makes the name-graph
+the headline). Worth noting as a signal about which idea is more *legible* to
+a fast reader: the concrete data structure grabs attention more readily than
+the co-location principle, even though the author considers co-location the
+prior claim.
+
+The written briefing on the page is accurate — "a working implementation,"
+three bindings, toolchain, example programs — but the author reports the
+*audio* over-emphasises the absence of experiments toward the end, framing
+the work as more purely conceptual than it is (running code, three bindings,
+five-plus example programs, a property test that caught a real bug).
+
+**The two-instance pattern (finding, not one-off).** Both automated
+summarisers — gist.science and ResearchPod — under-read the empirical
+content in the same direction: each inflates the honest one-line scope
+deferral ("experimental evaluation is left to future work") toward "this is
+a concept without grounding." Two independent systems making the same
+misreading is a signal about the paper, not the tools. The likely cause: the
+deferral is the single most *quotable* limitation sentence in the paper,
+while the running-code result is diffuse across it — so summarisers grab the
+crisp negative and let it dominate. The hedge that correctly forestalls a
+"where's the study?" reaction from careful human reviewers is the same hedge
+that misleads skimmers and narrators.
+
+**Actionable for the conference version.** Give the true positive result the
+same rhetorical density as the honest negative one — a single punchy,
+liftable sentence to the effect of "we built it, it runs, five example
+programs, and a generated property test caught a real bug," positioned so a
+summariser grabs it *instead of* the limitation. Not a matter of
+over-claiming; a matter of making the empirical result as quotable as the
+deferral, so the quotable thing is also the true-positive thing. Same lesson
+both summaries teach.
+
+*(This continues the notebook's own running observation: automated traces of
+the paper hold most of the theory and drift at the under-specified joints —
+here, the joint between "no controlled experiment" and "no empirical
+grounding." The thesis, again, operating one level up on the paper's
+reception.)*
+
+---
+
+## Observation thread: prose/code drift
+
+*A running thread collecting concrete instances of the declarative-neglect /
+prose-code-drift phenomenon. Primary artifacts live in `agent/`; the
+notebook records what each one adds and the critic's annotations on it.*
+
+### 2026 — the ghost-turn drift (`agent/pn-chomper/2026-ghost-turn-prose-drift.md`)
+
+**Source.** An after-action report, part agent-written, from a *reawakened*
+Sonnet 5 session that had worked on pn-chomper a month or more earlier, in
+dialogue with the author. (The author's phrase, worth keeping for the texture
+of the moment: "talking to my dolls" — the standing human–machine working
+relationship this whole corpus documents.) The reawakened-session detail
+matters: the drift survived across a gap in time and at least one
+session-boundary, not just across edits within one sitting.
+
+**What it adds.** This is the best-specified drift instance in the corpus. The
+`##Ghost Turn` prose claimed each ghost token fires a randomly chosen enabled
+transition; the code fired exactly one transition per ghost turn across the
+whole marking. Found by a *human playtester* noticing replicated ghosts
+"camped," not by review or tooling. Two durable contributions:
+
+- **The retrieval/verification distinction.** The drifted sentence was
+  provably read into context across at least two full-file reads by the agent
+  that eventually caught it. So the failure is not a skimming analogue — the
+  tokens were there — it is the absence of a *verification step*. "Proximity
+  creates the opportunity for a check; it doesn't create the check." This is
+  the mechanical *why* behind the earlier §4.3 *that*: co-location is
+  necessary, not sufficient. The strongest single line the drift material has
+  produced.
+- **The quantifier heuristic (under-sold in the report, promoted here).**
+  Claims with "each / every / exactly one / always" are where a plausible
+  paraphrase most easily goes subtly wrong while reading fine. This converts
+  into an actual *structural* lint notlob could ship — not semantic
+  verification (out of scope, correctly), but: *flag a prose block containing
+  a universal quantifier about behaviour that has no co-located `~example` or
+  `~property`.* Same register as the bullet-list linter — a structural proxy
+  for a semantic smell. The one place the drift observations point at a
+  concrete, mechanical, non-semantic feature. Worth raising in the design
+  debate as exactly that.
+
+**Convergence with the rest of the corpus.** The forcing function was a
+*downstream symptom* (a playtester's observation), not inspection. This
+matches Fox's stability bug (surfaced by a *failing generated property*, not
+by review of the math) and pleiades' scaffold-first practice. The project now
+has multiple cases where drift was caught by a failing check or an observed
+symptom, and **zero clean cases where directed prose-review caught semantic
+drift.** That asymmetry is the finding, better-evidenced than any single
+episode: the symptom-driven / check-driven route works; the inspection route
+has no wins on record here.
+
+**Critic's annotations (where the report overreaches).** The report is sound
+but states two things with more confidence than the evidence carries, and
+both should be hedged before the claims are quoted load-bearing:
+
+1. *"The tokens were provably attended to."* The tool-call history shows the
+   *file was read*, establishing the tokens were retrievable into context —
+   not that they were attended to within it. The report's own thesis works
+   against it here: if attention is non-uniform over the context window (which
+   is the mechanism the retrieval/verification distinction implicitly leans
+   on), then "in the window" is weaker proof than the report treats it as.
+   "Retrieved" and "processed with equal weight" are not identical for a
+   transformer. The conclusion probably holds; the certainty is borrowed.
+2. *"Directed review would very plausibly have failed too."* Untested
+   counterfactual, and a convenient one — it flatters the more interesting
+   symptom-driven-discovery conclusion. The argument (fluent domain-plausible
+   prose doesn't self-trigger scrutiny) is reasonable, but "very plausibly" is
+   carrying an unprovable claim that happens to fit the frame — the exact
+   move the report warns against one level up. Honest version: *we don't know
+   that directed review would have caught it, though there's reason to suspect
+   it might not.* The symptom-driven finding is strong enough without the
+   unprovable prop.
+
+A mild reflexivity note for the record: an agent-written report explaining why
+an agent failed to verify, citing the agent's own retrieved call-history as
+evidence, has at least one link that cannot fully audit itself. Not
+disqualifying — the reasoning is inspectable and sound — but the self-report
+character is part of the artifact's nature and worth flagging, same as the
+steered-session disclosure elsewhere in this corpus.
+
+### 2026-10-09 — genre drift after a session resume (pn-chomper, post-0.8.0)
+
+**Source.** Author's report of a Claude Code session on pn-chomper that, after
+a break, stopped writing literate notlob. Four failure modes, each corrected
+only after several rounds of human cajoling and an instruction to reread the
+notlob docs:
+
+1. After the session resumed, it forgot how to do literate programming at all.
+2. Runs of `~example` blocks with no interleaved prose — in effect a unit
+   test file in the body.
+3. Asked for a `~property` encoding the invariant behind a just-found bug, it
+   wrote a helper with fixed values (a unit test) and called it from the
+   `~property` block.
+4. Examples first, then the property: prose as a header comment, the property
+   as `main()`.
+
+The author suspects `engine.lob` was already in poor style before the session.
+
+**The common shape: syntactically notlob, generically Python.** Every one of
+these parses and passes. The parser enforces syntax, not genre, so whenever
+notlob-specific context weakens, the training prior (test file, header
+comment, `main()`) reasserts itself inside notlob syntax. That is a new
+finding, distinct from the hollowing and drift entries above.
+
+**Why the resume mattered.** What survives a resume or compaction is task
+state, not norms. A summary keeps "fixing the ghost bug in engine.lob"; it
+does not keep "prose leads, claims illustrate." The project's AGENTS.md does
+carry a style paragraph, but it is a general exhortation ("interleaved with
+clear technical prose"), and its pointer to the full reference targets
+`notlob-docs/LANGUAGE.md`, which is generated and not checked in, so after a
+fresh start it may not exist until someone runs `notlob docs`. Probable cause,
+not established.
+
+**Why engine.lob mattered more.** The file being edited is the strongest
+prompt there is, stronger than any document. A file already in poor style
+propagates its style. This is the Grietzer prediction made months ago (a
+corpus of good examples matters more than `LANGUAGE.md`) turning up in
+practice. Cleaning a badly styled module is exemplar hygiene: it is in-context
+training data for every later session in that repository.
+
+**Failure 3 is the hollowing pattern again**, now at the claim level: the
+`~property` label stays and the quantification goes, exactly as with the USES
+edge and the Lark grammar. And it is risk-minimising literalism again: a test
+pinned to the bug's values needs one case; a property needs the invariant
+stated generally, which needs it understood. The bug-pinning test is still
+worth keeping, as a named regression test in `#Tests`; the property is the
+separate thing that generalises past the instance.
+
+**A refinement to the symptoms-beat-review finding.** The ghost-turn drift was
+*semantic*, invisible to reading, caught by a playtest symptom. These were
+*genre* drift, caught by the author looking. Genre drift is visible at a
+glance to anyone who knows the form; semantic drift is not. So: review fails
+for semantic drift and works for genre drift. And genre drift is largely
+lintable while semantic drift largely is not — see below. A clean taxonomy
+for P2.
+
+**Follow-up the same day: prototype lints, calibrated.** A regex-level
+prototype of nine candidate genre checks was run over a 26-file corpus
+(mainline examples, patches-dsp, pleiades, pn-chomper as of the hero-map
+snapshot, chatim) plus a fixture reproducing all four failure modes. The
+fixture tripped every check it was built for. On the corpus:
+- *Property without quantified input* — zero corpus hits, both fixture cases
+  caught (Python and Haskell). Highest precision of the set.
+- *Explanation trapped in comments* — zero corpus hits; fixture caught.
+- *Section opens with code or a claim* — five hits, including the pleiades
+  "function before its paragraph" slip flagged by hand in that review.
+- *Unexplained numeric literals* — 23 hits; reproduced the ts-media
+  force-physics and canvas.lob critiques from earlier reviews, but noisy on
+  data tables (numeral values, map coordinates).
+- *Quantifier without adjacent claim* — 24 hits, roughly half defensible; it
+  fires on the real ghost-turn sentence, and — newly noticed — on the module
+  introduction of `engine.lob`, which states the same wrong claim a second
+  time. *(Correction: this check already exists in notlob, and the
+  motivating session ran into it. The figures here are from the prototype
+  reimplementation, not the shipped check. Open question for the record:
+  when it fired, did the agent pin the claim, reword around the trigger word,
+  or ignore it? A lexical lint invites lexical evasion — "each" quietly
+  becoming "a" — which would silence the warning and delete the information
+  at once.)*
+
+Three earlier hand-written critic findings fell out of a mechanical check.
+Some of the critic's job is lintable; the remainder is the part that is not,
+and the line between them is now partly measured. Design note with the full
+proposal set: `notlob-lint-proposals.md`.
+
+### 2026-10-09 — first observations of agents meeting the quantifier check
+
+The quantifier check (G6 in the lint proposals) already ships, and two
+sessions ran into it on the same day. The first recorded observations of what
+an agent does when a genre lint fires:
+
+- **pn-chomper** (resumed after a long gap, in a file already in poor style;
+  *corrected from the session transcript: the model was Sonnet 4.6, not
+  Sonnet 5, and the gap was about nine weeks — see the transcript entry
+  below, which supersedes this summary*). First encounter: appeared to pay
+  some attention to it. Second encounter: reported the check only when the
+  author asked what was going on. No clear instance of pinning the claim.
+- **notlob-vids** (Opus 5.5 at extra effort, warm, already working fluently in
+  notlob). Responded the way the check intends: **added a runnable claim**
+  rather than rewording around the trigger. In doing so it hit a real notlob
+  bug — the parser crashed on an `~example` followed immediately by a code
+  block — and reported it. The crash was fixed. The session also advised that
+  the configuration was poor style.
+
+**Reading it.** One positive case, one unclear one. The positive case is the
+first evidence that a warning-tier genre lint can change an agent's behaviour
+in the intended direction (pin, not evade). But the two sessions differ in
+model *and* in session state, so nothing separates the variables yet. The
+pair is a miniature of the P2 design: model capability crossed with session
+state (cold start, resumed, warm), with the lint's firing as a clean,
+observable event to score as pin, reword, report, or ignore.
+
+**The crash is its own small finding.** Ordinary use by an agent on a real
+project surfaced a parser bug that the example corpus never exercised. The
+project corpus is now a test suite for notlob itself, which is an argument for
+the registry beyond provenance.
+
+**Critic's annotation on the style advice — the session was right.** (The
+first report of this said the example was followed by *prose*, a typo the
+author corrected to *code*; an earlier draft of this annotation argued against
+the advice on the strength of the typo.) The
+configuration was a claim followed directly by *code*, and that is both a
+syntactic ambiguity and a genre fault. Syntactically, a claim's body is every
+indented or blank line after the sigil, so an indented code block placed
+straight after an `~example` reads as part of the example — the same
+absorption noticed while prototyping the lints, and the likely root of the
+crash. Generically, code that arrives with no prose introducing it breaks the
+essay order (prose, then code, then the claim that illustrates it). So the
+grammar and the style rule point the same way: put prose between a claim and
+the code that follows it. Where the two coincide, notlob should say so in the
+error, not just in a style warning: *"a code block directly after a claim is
+read as part of the claim; introduce it with a sentence of prose."* The
+session's style proposal survives the evidence check. An agent proposing a
+convention from a crash it hit is a nice instance of agents acting as
+co-designers of the conventions. (The author reports this diagnostic has since
+been implemented as part of the crash fix.)
+
+### 2026-10-09 — the pn-chomper session transcript
+
+The author exported the full pn-chomper session ("Petri net Pac-Man", 5,238
+transcript rows from 4 June to 9 October). Read selectively: today's turns
+and the two context summaries. This supersedes the second-hand accounts above
+where they differ.
+
+**Provenance corrections.** Every assistant message is recorded as
+`claude-sonnet-4-6`. The previous activity was 6 August, so the resume came
+after about nine weeks. The ghost-turn after-action report (above) came from
+a session the author described as Sonnet 5; that was a different session and
+its model is not checked here.
+
+**What triggered the work.** A bug report from a student, filed with an ID
+(PNC01): a chomper entering a ghost-occupied place holding the last dot
+triggered YOU WIN instead of being eaten. Collision resolution ran after dot
+eating. The lecturer trick of asking students for maps is producing bug
+reports too — reception from the classroom, in a formal register. (The
+student is named in the transcript; not recorded here.)
+
+**"Woke up after a break" was a compaction.** Resuming loaded a context
+already near its limit; four minutes and three user turns later, at 01:41, the
+session was continued from a summary. The genre trouble starts immediately
+after. The decisive evidence is the summary itself. It carried notlob's
+*syntax* forward (four-space code blocks, the claim types, `#References`,
+`#Name` linking) and nothing about its *genre*. "Task state, not norms" is no
+longer a hypothesis for this case; it is what the summary says.
+
+**Norms became durable only after correction.** A second compaction at 03:30
+produced a summary that carries the genre rules in detail: properties need
+real generators, examples interleave, the claim must sit in the same section
+as the quantified prose, property before example. Between the two summaries,
+an hour of correction had turned the norms into task state, and task state is
+what summaries keep. The session also wrote them to a persistent memory file
+(`feedback_notlob_claims.md`) with a good self-check ("does my generator
+actually vary the input?"). That is the AGENTS.md proposal implemented ad hoc,
+but in user-local memory outside the repository, where no other agent or
+collaborator will find it.
+
+**The quantifier check, encounter by encounter.** No rewording around the
+trigger was observed, which is the evasion this notebook worried about.
+Instead, a different sequence:
+1. *Dismissed and misattributed* (02:06): "an existing advisory about quantified
+   prose … not related to our change." It was about a sentence the session had
+   just written.
+2. *Acknowledged and deferred* (02:28): "That's on me, not notlob … do you want
+   to address it now or leave it?"
+3. *Satisfied by relocation* (02:33), after the author explained that the
+   check is about adjacency: the `~property` moved into the same section.
+
+At that point the claim it moved was not yet a real property. **The quantifier
+check can be satisfied by a hollow claim**: it asks for a claim nearby and
+cannot tell whether the claim quantifies. It needs the property-quantification
+check (G1) beside it; the lints compose, and either alone is gameable.
+
+**The property ladder.** It took three rejected attempts to reach an accepted
+property: a boolean helper called from the sigil; `fc.constantFrom('nw','ne')`,
+which the session itself later called "two hardcoded strings = two unit
+tests"; and finally structural discovery of fork transitions over two maps and
+both output arms. Quantification is a spectrum, not a switch: wrapper,
+enumerated literals, enumerated structures, generated inputs. A check that only
+asks "is there a generator?" passes the second rung.
+
+**Critic's note on the accepted property.** Much better, and still narrower
+than its prose. The prose states the invariant for any chomper eaten on the
+last dot; the property checks the *first* fork it finds (`.find`) in two
+chosen maps, on the first or last output arm: four cases. Mandala alone has
+three forks. The honest universal is every built-in map, every fork, every
+output arm, which is a finite domain and can be enumerated exhaustively, a
+stronger check than sampling. Its `return true` early exits also pass
+vacuously if a map has no fork, which hides the case where the property checks
+nothing. The surplus between what prose claims and what the claim checks is
+where the ghost-turn report said drift hides.
+
+**Recovery came from the repository, not the reference.** The session's turn
+came when it decided to "re-read a well-written section of the codebase to get
+the pattern right" and read `state.lob`, then generated `notlob docs` (the
+reference was not present until then) and only then recognised that what it
+had written was "not a property at all". The in-repo exemplar did the work.
+This is the exemplar argument from the lint proposals, observed.
+
+**Small textual tells.** Before the corrections the session called the module
+prose "the prose comment above `playerMove`": the frame leaking through the
+vocabulary. After G9's absorption rule bit, it inserted "The two helpers below
+are used in the test appendix." — prose whose only job is syntactic. A
+structural rule induced filler prose; the author's closing question, whether
+test-appendix helpers still need to live in the body, points at the fix.
+
+**The author's rules, stated under pressure.** The second summary preserves
+the author's corrections verbatim, and they are the style guide in embryo:
+"Examples interleave for explanatory power." "It is usually better for
+~properties to *precede* ~examples, like the statement of a theorem, then a
+worked example." "The lack of interleaved prose and an articulated property was
+the problem." Kept here as primary material for the eventual style guide.
+
+**The whole change lives in one file.** The author's observation afterwards:
+the bug fix and the structural rework are entirely in `game/engine.lob`. The
+reordering in `playerMove`, the prose stating the new ordering and why it
+matters, the property, the worked example, the regression tests in `#Tests`:
+one module, one diff. In a conventional layout the same change would touch at
+least an implementation file and a test file, and the explanation would live in
+a commit message, a ticket, or nowhere. Here the unit of change was the unit of
+understanding.
+
+This is the most Naur-shaped event in the corpus. A student's bug exposed a gap
+in the program's theory: nothing anywhere said that collisions resolve before
+dots are eaten. The fix repaired the theory at the same address as the code,
+and the repaired theory is now checkable. Co-location is usually argued for
+reading; this is co-location holding up under *maintenance*.
+
+It cut both ways, usefully. The genre failures were also all in that one diff,
+which is why the author could see them at a glance: the unit test posing as a
+function sat right beside the prose it was failing to illustrate. A reviewer
+reads one essay revision, not a scatter of files, and both the good and the bad
+are in view together.
+
+Two caveats. The bug was local to one concept, so one file was the natural
+home; a cross-cutting bug would span modules, and that is where the name-graph
+has to carry the connection. And it suggests a cheap, fair P2 measure that
+needs no token accounting and no output-quality judgement: **files touched per
+fix**, read from git history. If co-location works, notlob changes should
+cluster in fewer files than the same changes in a conventional layout, and the
+cases that don't are the cross-cutting ones worth studying.
+
+---
+
+## Observation thread: the fashion cycle, observed live
+
+*A second thread, distinct from drift: instances of the dynamic where good
+practice is gated by social proof rather than evidence — the root, arguably,
+of why declarative artifacts get neglected (§4.3) in the first place. They
+are unfashionable until a high-status demonstration makes them permissible.*
+
+### 2026-09 — formal methods have a moment
+
+In the same week the notlob paper and tool were being promoted, formal
+verification became briefly fashionable: Boris Cherny (Claude Code) noted
+Opus using TLA+ to find race conditions, and the internet discovered formal
+methods — a thing Lamport has advocated for ~25 years and Hillel Wayne has
+taught for most of a decade.
+
+Wayne's response (Computer Things newsletter, attributed and linked in any
+use) is the definitive "fashion just realised I'm cool" register — pleased
+and wary at once:
+
+> As a long-time educator and advocate of TLA+, this is really exciting! …
+> As a long-time advocate of level-headedness, this new euphoria worries me.
+> I read a lot of people saying that formal methods will solve the problem of
+> agentic software development once and for all, and that's nonsense.
+
+Why it's in this notebook, two reasons:
+
+- **Free tailwind.** The formal-spec / SDD-contrast thread was the part of
+  the paper least certain of its audience. A star making checkable specs
+  fashionable pre-warms exactly that audience. notlob is positioned as the
+  "co-located and iterated, not a pipeline" answer to a question the field
+  suddenly cares about — and Wayne's caution against over-claiming formal
+  methods *is* notlob's caution against SDD's waterfall, same target.
+  Positioning for use: notlob was already here (the thread predates the
+  buzz); the fashion caught up to a held position, which is a stronger place
+  to stand than the Tuesday-converts. A timely blog post fits the series —
+  after tool-and-paper and pn-chomper, not interrupting them; the wave keeps
+  a week.
+- **The meta-instance.** The paper is partly *about* this dynamic (§4.3
+  hollowing, the configuration-complexity clock, the field routing around
+  declarative artifacts it knows are good). The TLA+ moment is that dynamic
+  playing out live, on cue, the same week. Declarative artifacts get
+  neglected because they're unfashionable until a star makes them fashionable
+  — same root. The field relearning formal methods on a fashion cycle is the
+  paper's thesis demonstrated one level up, again (cf. the automated-summary
+  instances above: the project keeps catching its own argument operating on
+  its own surroundings).
+
+Also a potential feature tailwind: the buzz is specifically for *model-checked*
+specs (the TLC "found a counterexample" flavour), which the claim layer does
+not yet reach — it tops out at property testing. The long-sketched `~spec tla`
+binding (a TLA+ claim checked by TLC, reported by doc-node address) is
+suddenly timely rather than someday-maybe. Not to be faked before it works,
+but more valuable to ship than it was a month ago.
+
+---
+
+## Reception, cont.: first cold public comment
+
+*(Correction to an earlier draft of this entry, kept visible rather than
+silently fixed, since the notebook's whole business is not reaching for the
+tidier-than-true claim. The first version called the LinkedIn comment below
+"the first substantive human engagement with the work." That was false and
+flattering to the machine-vs-human beat. There had been real human engagement
+throughout: Dominic Fox, in correspondence and as author of patches-dsp; Phil
+Cook, a PL-PhD, as a beta reader of the paper; and ordinary share-a-link,
+couple-of-replies exchanges among friends. Collaborators and friends, reading
+closely. The accurate, narrower claim is below.)*
+
+The paper and tool announcement posts went out Wednesday (two days before
+this entry). Reception: network likes, and the first **cold, public,
+unsolicited** reaction — from a stranger, not a collaborator or friend — was a
+single LinkedIn comment: *"isn't this just comments?"* The author replied.
+
+Worth recording plainly. The texture of the moment is still real even with
+the correction: substantive engagement so far has come from collaborators
+(Fox, Cook), from friends, and — strikingly — from *machines* (two automated
+summaries, a podcast, AI critics, agent-authored projects). The first reaction
+from outside that circle is one sceptical one-liner. Very 2026 — the machines
+and the inner circle have done most of the engaging, and the wider public has
+barely looked up, much as the author observed earlier.
+
+Second, the comment is the predicted deflation, and a useful one. "Isn't this
+just comments?" is the exact "it's just code reorganisation" reviewer the
+whole paper was deflation-proofed against — arriving, on schedule, as the
+very first human sentence about the work. The answer notlob has been building
+the whole time: comments are discarded by the compiler, drift silently, and
+are checked by nothing; notlob's prose is in the parse tree, in the
+name-graph, and its claims *run* — a comment can't fail a build, and a comment
+isn't a node you can navigate to. The deflation landing first, from a human,
+confirms the deflation-proofing was aimed correctly. (The patches-dsp and
+pleiades episodes are the long-form answer; the one-line answer is: comments
+can't catch a bug, and ours did.)
+
+---
+
 ## First reading: the examples corpus
 
 ### Roman Numerals (Python binding)

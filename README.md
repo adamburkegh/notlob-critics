@@ -18,7 +18,7 @@ Two critic personae were used, differing only in prompted register:
 - **Duke Fox** — a gonzo register (after Hunter S. Thompson, David Foster
   Wallace, Patricia Lockwood).
 
-The reviews in this repository are Teri's unless a file states otherwise.
+Reviews by each critic are kept in their own directory (`teri/`, `duke/`).
 
 ## How to read this data
 
@@ -48,12 +48,19 @@ valuable as the rest.
 ## Layout
 
 - `teri/` — reviews by Teri Amanuensis Notlob
-- `duke/` — reviews by Duke Fox
-- `notebook.md` — Teri's running critic notebook: accumulated critical
+- `duke/` — reviews by Duke Fox, with an index in `duke/README.md`
+- `teri/notebook.md` — Teri's running critic notebook: accumulated critical
   positions and provenance notes carried across sessions. This is the
   external-memory mechanism that let a stateless critic hold a position over
   time, and is a different data type from the individual reviews.
-- `STYLE.md` — style guide for writing notlob programs (if present)
+- `duke/notebook.md` — Duke's equivalent: dated entries, positions carried
+  across sessions.
+- `agent/` — reports from other agents (not critics), such as builder
+  after-action reports, grouped by project (`agent/pn-chomper/`). These are
+  agent output with the machine subjectivity that implies, and are cited by
+  the critics' notebooks. Kept as their own documents, intact; the notebooks
+  record what each adds and annotate it.
+- `duke/style-guide.md` — Duke's style guide for writing notlob programs
 
 ## Related
 
